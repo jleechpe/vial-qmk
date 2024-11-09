@@ -3,10 +3,10 @@ name: Release QMK Firmware
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
   pull_request_target:
     types: [opened, synchronize, reopened]
-
+  workflow_dispatch:
 
 permissions: write-all
 
@@ -20,9 +20,15 @@ jobs:
 
     strategy:
       matrix:
-        keyboard: [ svalboard/trackpoint, svalboard, svalboard/trackball/pmw3360, svalboard/trackball/pmw3389 ]
-        keymap: [ vial ]
-        side: [ left, right ]
+        keyboard:
+          [
+            svalboard/trackpoint,
+            svalboard,
+            svalboard/trackball/pmw3360,
+            svalboard/trackball/pmw3389,
+          ]
+        keymap: [vial]
+        side: [left, right]
 
   build_blank:
     uses: ./.github/workflows/build-firmware.yml
@@ -33,7 +39,6 @@ jobs:
 
     strategy:
       matrix:
-        keyboard: [ svalboard ]
-        keymap: [ blank ]
-        side: [ left, right ]
-
+        keyboard: [svalboard]
+        keymap: [blank]
+        side: [left, right]
