@@ -46,8 +46,10 @@ jobs:
       id: build_firmware
       run: |
         git config --global --add safe.directory '*'
+        echo "Setting up QMK"
         qmk setup -y
-        make ${{ inputs.keyboard }}/${{ inputs.side }}:${{ inputs.keymap }}
+        echo "Running make"
+        # make ${{ inputs.keyboard }}/${{ inputs.side }}:${{ inputs.keymap }}
       shell: bash
 
     - name: Move file into position
